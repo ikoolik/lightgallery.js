@@ -1,5 +1,5 @@
 /**!
- * lightgallery.js | 1.0.1 | December 22nd 2016
+ * lightgallery.js | 1.0.2 | March 21st 2017
  * http://sachinchoolur.github.io/lightgallery.js/
  * Copyright (c) 2016 Sachin N; 
  * @license GPLv3 
@@ -624,15 +624,15 @@
      */
     Plugin.prototype.isVideo = function (src, index) {
 
-        if (!src) {
-            throw new Error("Make sure that slide " + index + " has an image/video src");
-        }
-
         var html;
         if (this.s.dynamic) {
             html = this.s.dynamicEl[index].html;
         } else {
             html = this.items[index].getAttribute('data-html');
+        }
+
+        if (!src && !html) {
+            throw new Error("Make sure that slide " + index + " has an image/video src");
         }
 
         if (!src && html) {
