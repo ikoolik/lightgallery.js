@@ -430,15 +430,15 @@ Plugin.prototype.doCss = function() {
  */
 Plugin.prototype.isVideo = function(src, index) {
 
-    if(!src) {
-        throw new Error("Make sure that slide " + index + " has an image/video src");
-    }
-
     var html;
     if (this.s.dynamic) {
         html = this.s.dynamicEl[index].html;
     } else {
         html = this.items[index].getAttribute('data-html');
+    }
+
+    if(!src && !html) {
+        throw new Error("Make sure that slide " + index + " has an image/video src");
     }
 
     if (!src && html) {
